@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="430dp"
+        android:layout_margin="5dp"
+
+        card_view:cardBackgroundColor="@color/white"
+        card_view:cardCornerRadius="20dp"
+        card_view:cardElevation="15dp"
+        card_view:contentPadding="10dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/foodImg"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/cake" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/foodImg"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/nameTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/foodImg"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:text="상호명 :"
+                        android:padding="2dp"
+                        android:background="@drawable/card_item_line"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/locationTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/nameTv"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:text="위치 : "
+                        android:padding="2dp"
+                        android:background="@drawable/card_item_line"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/menuTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/locationTv"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:text="메뉴 : "
+                        android:padding="2dp"
+                        android:background="@drawable/card_item_line"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/sideTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/locationTv"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:text="사이드 메뉴 : "
+                        android:padding="2dp"
+                        android:background="@drawable/card_item_line"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/priceTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/locationTv"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1"
+                        android:text="가격 : "
+                        android:padding="2dp"
+                        android:background="@drawable/card_item_line"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="294dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/timeTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:text="시간 : "
+                        android:padding="2dp"
+                        android:background="@drawable/card_item_line"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/telTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:text="전화번호 : "
+                        android:padding="2dp"
+                        android:background="@drawable/card_item_line"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/reviewTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:padding="2dp"
+                        android:text="평점 / 리뷰 수 : "
+                        android:background="@drawable/card_item_line"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/noteTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/locationTv"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1"
+                        android:padding="2dp"
+                        android:text="비고 : "
+                        android:background="@drawable/card_item_line"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
