@@ -135,8 +135,8 @@ public class WritePlace extends AppCompatActivity {
             reviewEdt.setText(itemReview);
             noteEdt.setText(itemNote);
 
-            saveBtn.setVisibility(View.INVISIBLE);
-            updateBtn.setVisibility(View.VISIBLE);
+            //saveBtn.setVisibility(View.INVISIBLE);
+            //updateBtn.setVisibility(View.VISIBLE);
         }
     }
 }

@@ -29,8 +29,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public static int position;
 
-    public static ArrayList<CardItem> cardItems = new ArrayList<CardItem>(); // 리사이클러뷰 아이템들을 담을 어레이 리스트 생성 // 필터되지않은 기본 어레이 리스트
-    public static ArrayList<CardItem> filteredList = new ArrayList<CardItem>(); // 필터된 어레이 리스트
+    public static ArrayList<CardItem> cardItems;
+    public static ArrayList<CardItem> filteredList;
 
     public RecyclerViewAdapter(Context context, ArrayList<CardItem> cardItems) {
         this.cardItems = cardItems;
@@ -99,7 +99,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             protected FilterResults performFiltering(CharSequence charSequence) {
                 String str = charSequence.toString(); // 검색창에 입력된 문자열
                 if(str.isEmpty()) { // 검색창에 입력한 문자가 없으면
-                    cardItems = filteredList; // 기존의 어레이 리스트로
+                    filteredList = cardItems; // 기존의 어레이 리스트로
                 } else {
                     ArrayList<CardItem> filteringList = new ArrayList<CardItem>();
 
@@ -114,7 +114,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 }
                 FilterResults filterResults = new FilterResults();
                 filterResults.values = filteredList;
-
                 return filterResults;
             }
 

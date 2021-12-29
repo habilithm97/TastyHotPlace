@@ -25,13 +25,14 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+// 
 public class MainActivity extends AppCompatActivity implements TextWatcher{
 
     RecyclerViewAdapter adapter;
     Uri foodImg;
 
     SearchView searchView;
-    public static Button homeBtn;
+    public static Button homeBtn, searchBtn;
 
     public static Context context;
 
@@ -40,21 +41,33 @@ public class MainActivity extends AppCompatActivity implements TextWatcher{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*
         searchView = (SearchView)findViewById(R.id.searchView);
+        //searchView.setSubmitButtonEnabled(true); // 검색 버튼을 눌러야만 검색이 되도록 변경
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
+            public boolean onQueryTextSubmit(String query) { // 검색 버튼이 눌러졌을 때 이벤트 처리
                 adapter.getFilter().filter(query);
+                Toast.makeText(getApplicationContext(), "검색어를 입력하였습니다. ", Toast.LENGTH_SHORT).show();
                 return false;
             }
 
             @Override
-            public boolean onQueryTextChange(String query) {
+            public boolean onQueryTextChange(String query) { // 검색어가 변경되었을 때 이벤트 처리
                 adapter.getFilter().filter(query);
+                Toast.makeText(getApplicationContext(), "검색어가 변경되었습니다. ", Toast.LENGTH_SHORT).show();
                 return false;
+                }
+        });
+
+        // https://jootc.com/p/201906042883
+        searchBtn = (Button)findViewById(R.id.searchBtn);
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchView.setQuery(searchView.getQuery(), true);
             }
-        }); */
+        });
 
         homeBtn = (Button)findViewById(R.id.homeBtn);
         homeBtn.setOnClickListener(new View.OnClickListener() {
