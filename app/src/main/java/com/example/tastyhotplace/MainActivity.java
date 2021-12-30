@@ -25,8 +25,8 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-// 
-public class MainActivity extends AppCompatActivity implements TextWatcher{
+//
+public class MainActivity extends AppCompatActivity {
 
     RecyclerViewAdapter adapter;
     Uri foodImg;
@@ -48,14 +48,12 @@ public class MainActivity extends AppCompatActivity implements TextWatcher{
             @Override
             public boolean onQueryTextSubmit(String query) { // 검색 버튼이 눌러졌을 때 이벤트 처리
                 adapter.getFilter().filter(query);
-                Toast.makeText(getApplicationContext(), "검색어를 입력하였습니다. ", Toast.LENGTH_SHORT).show();
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String query) { // 검색어가 변경되었을 때 이벤트 처리
                 adapter.getFilter().filter(query);
-                Toast.makeText(getApplicationContext(), "검색어가 변경되었습니다. ", Toast.LENGTH_SHORT).show();
                 return false;
                 }
         });
@@ -156,21 +154,6 @@ public class MainActivity extends AppCompatActivity implements TextWatcher{
         if(RecyclerViewAdapter.cardItems == null) {
             RecyclerViewAdapter.cardItems = new ArrayList<>();
         }
-    }
-
-    @Override
-    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-    }
-
-    @Override
-    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-    }
-
-    @Override
-    public void afterTextChanged(Editable editable) {
-
     }
 
     private ArrayList<CardItem> getList() {
