@@ -37,8 +37,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.cardItems = list;
         this.filteredList = list;
     }
-
-    // https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=rkswlrbduf&logNo=221208233990
     @NonNull
     @Override
     public RecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
@@ -182,9 +180,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     intent.putExtra("itemNote", itemNote);
 
                     ((Activity)context).startActivityForResult(intent, 97);
-
-                    //WritePlace.updateBtn.setVisibility(View.VISIBLE);
-                    //WritePlace.saveBtn.setVisibility(View.INVISIBLE);
                 }
             });
 
