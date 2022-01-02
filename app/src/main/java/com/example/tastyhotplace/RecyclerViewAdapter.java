@@ -25,12 +25,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     TextView nameTv, locationTv, menuTv, sideTv, priceTv, timeTv, telTv, reviewTv, noteTv;
 
-    public Context context;
+    Context context;
 
     public static int position;
 
-    public static ArrayList<CardItem> cardItems;
-    public static ArrayList<CardItem> filteredList;
+    static ArrayList<CardItem> cardItems;
+    static ArrayList<CardItem> filteredList;
 
     public RecyclerViewAdapter(Context context, ArrayList<CardItem> list) {
         this.context = context;

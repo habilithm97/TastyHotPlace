@@ -25,46 +25,22 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements TextWatcher{
 
     RecyclerViewAdapter adapter;
     Uri foodImg;
 
-    SearchView searchView;
-    public static Button homeBtn, searchBtn;
-
-    public static Context context;
+    EditText searchEdt;
+    public static Button homeBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        searchView = (SearchView)findViewById(R.id.searchView);
-        //searchView.setSubmitButtonEnabled(true); // 검색 버튼을 눌러야만 검색이 되도록 변경
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) { // 검색 버튼이 눌러졌을 때 이벤트 처리
-                adapter.getFilter().filter(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String query) { // 검색어가 변경되었을 때 이벤트 처리
-                adapter.getFilter().filter(query);
-                return false;
-                }
-        });
-
+        searchEdt = (EditText)findViewById(R.id.searchEdt);
+        searchEdt.addTextChangedListener(this);
         // https://jootc.com/p/201906042883
-        searchBtn = (Button)findViewById(R.id.searchBtn);
-        searchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                searchView.setQuery(searchView.getQuery(), true);
-            }
-        });
 
         homeBtn = (Button)findViewById(R.id.homeBtn);
         homeBtn.setOnClickListener(new View.OnClickListener() {
@@ -157,5 +133,20 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<CardItem> getList() {
         return RecyclerViewAdapter.cardItems;
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence c, int i, int i1, int i2) { // 입력하기 전에 처리
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence c, int i, int i1, int i2) { // 변화와 동시에 처리
+        adapter.getFilter().filter(c);
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) { // 입력이 끝났을 때 처리
+
     }
 }
