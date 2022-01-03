@@ -15,6 +15,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -27,7 +28,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<CardItem> cardItems, filteredList;
+    //ArrayList<CardItem> cardItems, filteredList;
+    ArrayList<CardItem> filteredList;
     RecyclerViewAdapter adapter;
     Uri foodImg;
 
@@ -39,23 +41,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        cardItems = new ArrayList<>();
+        //cardItems = new ArrayList<>();
         filteredList = new ArrayList<>();
 
         searchEdt = (EditText)findViewById(R.id.searchEdt);
         searchEdt.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { // 입력하기 전에 처리
 
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                adapter.getFilter().filter(charSequence);
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { // 입력과 동시에 처리
+                //adapter.getFilter().filter(charSequence);
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
+            public void afterTextChanged(Editable editable) { // 입력 후에 처리
                 String str = searchEdt.getText().toString();
                 searchFilter(str);
 
@@ -76,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         foodImg = getIntent().getParcelableExtra("foodImg");
 
         //adapter = new RecyclerViewAdapter(this, getList());
-        adapter = new RecyclerViewAdapter(cardItems, this);
+        adapter = new RecyclerViewAdapter(RecyclerViewAdapter.cardItems, this);
 
         FloatingActionButton floatingActionButton = findViewById(R.id.floatBtn); // 메모 작성하는 플로팅 버튼
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -132,6 +134,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        //loadData();
     }
 
     @Override
@@ -153,18 +157,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*
     private ArrayList<CardItem> getList() {
         return RecyclerViewAdapter.cardItems;
-    }
+    } */
 
     public void searchFilter(String str) {
         filteredList.clear();
 
-        for(int i = 0; i < cardItems.size(); i++) {
-            if(cardItems.get(i).getName().toLowerCase().contains(str.toLowerCase())) {
-                filteredList.add(cardItems.get(i));
+        for(int i = 0; i < RecyclerViewAdapter.cardItems.size(); i++) {
+            if(RecyclerViewAdapter.cardItems.get(i).getName().toLowerCase().contains(str.toLowerCase())) {
+                filteredList.add(RecyclerViewAdapter.cardItems.get(i));
             }
         }
-        adapter.searchFilter(filteredList);
+        adapter.filterList(filteredList);
     }
 }

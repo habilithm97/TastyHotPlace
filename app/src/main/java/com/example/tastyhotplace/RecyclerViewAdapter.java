@@ -23,7 +23,7 @@ import com.google.android.material.behavior.HideBottomViewOnScrollBehavior;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> implements OnItemClickListener, Filterable {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> implements OnItemClickListener {
 
     TextView nameTv, locationTv, menuTv, sideTv, priceTv, timeTv, telTv, reviewTv, noteTv;
 
@@ -31,15 +31,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public static int position;
 
-    static ArrayList<CardItem> cardItems;
-    ArrayList<CardItem> filteredList;
+    public static ArrayList<CardItem> cardItems = new ArrayList<CardItem>();
+    //public static ArrayList<CardItem> filteredList = new ArrayList<CardItem>();
 
     Activity activity;
 
     public RecyclerViewAdapter(ArrayList<CardItem> list, Activity activity) {
         this.activity = activity;
         this.cardItems = list;
-        this.filteredList = list;
+        //this.filteredList = list;
     }
     @NonNull
     @Override
@@ -105,6 +105,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     }
 
+    /*
     @Override
     public Filter getFilter() {
         return new Filter() {
@@ -116,14 +117,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 } else { // 검색창에 입력한 문자가 있으면
                     ArrayList<CardItem> filteringList = new ArrayList<CardItem>();
 
-                    /*
+
                     for (CardItem item : cardItems) {
                         if (item.getName().contains(charSequence) || item.getLocation().contains(charSequence) || item.getMenu().contains(charSequence) || item.getSide().contains(charSequence) ||
                                 item.getPrice().contains(charSequence) || item.getTime().contains(charSequence) || item.getTel().contains(charSequence) || item.getReview().contains(charSequence) ||
                                 item.getNote().contains(charSequence)) {
                             filteringList.add(item);
                         }
-                    } */
+                    }
 
                     for(CardItem item : cardItems) { // 필터링되지않은 기존의 어레이 리스트를 하나하나 검색해서
                         if (item.getName().toLowerCase().contains(str.toLowerCase()) || item.getLocation().toLowerCase().contains(str.toLowerCase()) || item.getMenu().toLowerCase().contains(str.toLowerCase()) ||
@@ -145,7 +146,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 notifyDataSetChanged();
             }
         };
-    }
+    } */
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener {
 
@@ -250,7 +251,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         notifyItemRangeChanged(position, cardItems.size());
     }
 
-    public void searchFilter(ArrayList<CardItem> filteredList) {
+    public void filterList(ArrayList<CardItem> filteredList) {
         cardItems = filteredList;
         notifyDataSetChanged();
     }
