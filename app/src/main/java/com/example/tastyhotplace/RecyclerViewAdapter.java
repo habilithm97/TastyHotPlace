@@ -19,6 +19,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.behavior.HideBottomViewOnScrollBehavior;
+
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> implements OnItemClickListener, Filterable {
@@ -30,10 +32,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public static int position;
 
     static ArrayList<CardItem> cardItems;
-    static ArrayList<CardItem> filteredList;
+    ArrayList<CardItem> filteredList;
 
-    public RecyclerViewAdapter(Context context, ArrayList<CardItem> list) {
-        this.context = context;
+    Activity activity;
+
+    public RecyclerViewAdapter(ArrayList<CardItem> list, Activity activity) {
+        this.activity = activity;
         this.cardItems = list;
         this.filteredList = list;
     }
@@ -73,6 +77,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.telTv.setText(item.getTel());
         holder.reviewTv.setText(item.getReview());
         holder.noteTv.setText(item.getNote());
+
+        /*
+        holder.nameTv.setText((CharSequence) filteredList.get(position));
+        holder.locationTv.setText((CharSequence) filteredList.get(position));
+        holder.menuTv.setText((CharSequence) filteredList.get(position));
+        holder.sideTv.setText((CharSequence) filteredList.get(position));
+        holder.priceTv.setText((CharSequence) filteredList.get(position));
+        holder.timeTv.setText((CharSequence) filteredList.get(position));
+        holder.telTv.setText((CharSequence) filteredList.get(position));
+        holder.reviewTv.setText((CharSequence) filteredList.get(position));
+        holder.noteTv.setText((CharSequence) filteredList.get(position)); */
 
     }
 
@@ -233,5 +248,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         cardItems.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, cardItems.size());
+    }
+
+    public void searchFilter(ArrayList<CardItem> filteredList) {
+        cardItems = filteredList;
+        notifyDataSetChanged();
     }
 }

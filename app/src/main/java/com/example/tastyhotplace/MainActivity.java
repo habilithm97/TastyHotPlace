@@ -25,8 +25,9 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements TextWatcher{
+public class MainActivity extends AppCompatActivity {
 
+    ArrayList<CardItem> cardItems, filteredList;
     RecyclerViewAdapter adapter;
     Uri foodImg;
 
@@ -38,8 +39,28 @@ public class MainActivity extends AppCompatActivity implements TextWatcher{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        cardItems = new ArrayList<>();
+        filteredList = new ArrayList<>();
+
         searchEdt = (EditText)findViewById(R.id.searchEdt);
-        searchEdt.addTextChangedListener(this);
+        searchEdt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                adapter.getFilter().filter(charSequence);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String str = searchEdt.getText().toString();
+                searchFilter(str);
+
+            }
+        });
         // https://jootc.com/p/201906042883
 
         homeBtn = (Button)findViewById(R.id.homeBtn);
@@ -54,7 +75,8 @@ public class MainActivity extends AppCompatActivity implements TextWatcher{
 
         foodImg = getIntent().getParcelableExtra("foodImg");
 
-        adapter = new RecyclerViewAdapter(this, getList());
+        //adapter = new RecyclerViewAdapter(this, getList());
+        adapter = new RecyclerViewAdapter(cardItems, this);
 
         FloatingActionButton floatingActionButton = findViewById(R.id.floatBtn); // 메모 작성하는 플로팅 버튼
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -66,12 +88,12 @@ public class MainActivity extends AppCompatActivity implements TextWatcher{
         });
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setAdapter(adapter); // 새로 만들면안되지;;
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter); // 새로 만들면안되지;;
     }
 
     @Override
@@ -135,18 +157,14 @@ public class MainActivity extends AppCompatActivity implements TextWatcher{
         return RecyclerViewAdapter.cardItems;
     }
 
-    @Override
-    public void beforeTextChanged(CharSequence c, int i, int i1, int i2) { // 입력하기 전에 처리
+    public void searchFilter(String str) {
+        filteredList.clear();
 
-    }
-
-    @Override
-    public void onTextChanged(CharSequence c, int i, int i1, int i2) { // 변화와 동시에 처리
-        adapter.getFilter().filter(c);
-    }
-
-    @Override
-    public void afterTextChanged(Editable editable) { // 입력이 끝났을 때 처리
-
+        for(int i = 0; i < cardItems.size(); i++) {
+            if(cardItems.get(i).getName().toLowerCase().contains(str.toLowerCase())) {
+                filteredList.add(cardItems.get(i));
+            }
+        }
+        adapter.searchFilter(filteredList);
     }
 }
