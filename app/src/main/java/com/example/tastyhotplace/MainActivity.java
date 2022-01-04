@@ -77,9 +77,6 @@ public class MainActivity extends AppCompatActivity {
 
         foodImg = getIntent().getParcelableExtra("foodImg");
 
-        //adapter = new RecyclerViewAdapter(this, getList());
-        adapter = new RecyclerViewAdapter(RecyclerViewAdapter.cardItems, this);
-
         FloatingActionButton floatingActionButton = findViewById(R.id.floatBtn); // 메모 작성하는 플로팅 버튼
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,13 +86,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //adapter = new RecyclerViewAdapter(this, getList());
+        adapter = new RecyclerViewAdapter(RecyclerViewAdapter.cardItems, this);
+
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter); // 새로 만들면안되지;;
+        recyclerView.setAdapter(adapter); 
     }
 
     @Override
@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
     } */
 
     public void searchFilter(String str) {
-        filteredList.clear();
+        filteredList.clear(); // 지금 문제는 기존 리스트가 클리어됨;
 
         for(int i = 0; i < RecyclerViewAdapter.cardItems.size(); i++) {
             if(RecyclerViewAdapter.cardItems.get(i).getName().toLowerCase().contains(str.toLowerCase())) {

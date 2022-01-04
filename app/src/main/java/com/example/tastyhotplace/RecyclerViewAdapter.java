@@ -31,14 +31,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public static int position;
 
-    public static ArrayList<CardItem> cardItems = new ArrayList<CardItem>();
+    static ArrayList<CardItem> cardItems;
     //public static ArrayList<CardItem> filteredList = new ArrayList<CardItem>();
-
     Activity activity;
 
-    public RecyclerViewAdapter(ArrayList<CardItem> list, Activity activity) {
+    public RecyclerViewAdapter(ArrayList<CardItem> cardItems, Activity activity) {
         this.activity = activity;
-        this.cardItems = list;
+        this.cardItems = cardItems;
         //this.filteredList = list;
     }
     @NonNull
