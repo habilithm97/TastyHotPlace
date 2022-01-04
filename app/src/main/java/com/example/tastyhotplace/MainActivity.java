@@ -162,8 +162,8 @@ public class MainActivity extends AppCompatActivity {
         return RecyclerViewAdapter.cardItems;
     } */
 
-    public void searchFilter(String str) {
-        filteredList.clear(); // 지금 문제는 기존 리스트가 클리어됨;
+    public void searchFilter(String str) { // 검색창에 입력한 문자열이 인자로 전달됨
+        filteredList.clear();
 
         for(int i = 0; i < RecyclerViewAdapter.cardItems.size(); i++) {
             if(RecyclerViewAdapter.cardItems.get(i).getName().toLowerCase().contains(str.toLowerCase())) {

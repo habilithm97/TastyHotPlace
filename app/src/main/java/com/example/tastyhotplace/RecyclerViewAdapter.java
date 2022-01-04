@@ -251,7 +251,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public void filterList(ArrayList<CardItem> filteredList) {
-        cardItems = filteredList;
+        cardItems = filteredList; // 기존 리스트를 필터된 리스트로 변경
         notifyDataSetChanged();
     }
 }
