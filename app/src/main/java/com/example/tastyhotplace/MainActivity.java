@@ -28,8 +28,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    //ArrayList<CardItem> cardItems, filteredList;
-    ArrayList<CardItem> filteredList;
+    ArrayList<CardItem> cardItems, filteredList;
+    //ArrayList<CardItem> filteredList;
     RecyclerViewAdapter adapter;
     Uri foodImg;
 
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //cardItems = new ArrayList<>();
+        cardItems = new ArrayList<>();
         filteredList = new ArrayList<>();
 
         searchEdt = (EditText)findViewById(R.id.searchEdt);
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //adapter = new RecyclerViewAdapter(this, getList());
-        adapter = new RecyclerViewAdapter(RecyclerViewAdapter.cardItems, this);
+        adapter = new RecyclerViewAdapter(cardItems, this);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("TastyHotPlace", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
-        String json = gson.toJson(RecyclerViewAdapter.cardItems);
+        String json = gson.toJson(cardItems);
         editor.putString("Tasty HotPlace List", json);
         editor.apply();
     }
@@ -150,10 +150,10 @@ public class MainActivity extends AppCompatActivity {
         Gson gson = new Gson();
         String json = sharedPreferences.getString("Tasty HotPlace List", null);
         Type type = new TypeToken<ArrayList<CardItem>>() {}.getType();
-        RecyclerViewAdapter.cardItems = gson.fromJson(json, type);
+        cardItems = gson.fromJson(json, type);
 
-        if(RecyclerViewAdapter.cardItems == null) {
-            RecyclerViewAdapter.cardItems = new ArrayList<>();
+        if(cardItems == null) {
+            cardItems = new ArrayList<>();
         }
     }
 
@@ -165,9 +165,9 @@ public class MainActivity extends AppCompatActivity {
     public void searchFilter(String str) { // 검색창에 입력한 문자열이 인자로 전달됨
         filteredList.clear();
 
-        for(int i = 0; i < RecyclerViewAdapter.cardItems.size(); i++) {
-            if(RecyclerViewAdapter.cardItems.get(i).getName().toLowerCase().contains(str.toLowerCase())) {
-                filteredList.add(RecyclerViewAdapter.cardItems.get(i));
+        for(int i = 0; i < cardItems.size(); i++) {
+            if(cardItems.get(i).getName().toLowerCase().contains(str.toLowerCase())) {
+                filteredList.add(cardItems.get(i));
             }
         }
         adapter.filterList(filteredList);
