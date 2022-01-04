@@ -76,18 +76,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.telTv.setText(item.getTel());
         holder.reviewTv.setText(item.getReview());
         holder.noteTv.setText(item.getNote());
-
-        /*
-        holder.nameTv.setText((CharSequence) filteredList.get(position));
-        holder.locationTv.setText((CharSequence) filteredList.get(position));
-        holder.menuTv.setText((CharSequence) filteredList.get(position));
-        holder.sideTv.setText((CharSequence) filteredList.get(position));
-        holder.priceTv.setText((CharSequence) filteredList.get(position));
-        holder.timeTv.setText((CharSequence) filteredList.get(position));
-        holder.telTv.setText((CharSequence) filteredList.get(position));
-        holder.reviewTv.setText((CharSequence) filteredList.get(position));
-        holder.noteTv.setText((CharSequence) filteredList.get(position)); */
-
     }
 
     public void addItem(CardItem item) {
@@ -106,7 +94,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     /*
     @Override
-    public Filter getFilter() {
+    public Filter getFilter() { // Filter 클래스에서 오버라이드한 메소드
         return new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) { // 필터 알고리즘 구현

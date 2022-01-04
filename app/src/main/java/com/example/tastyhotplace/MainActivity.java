@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { // 입력과 동시에 처리
-                //adapter.getFilter().filter(charSequence);
+                //adapter.getFilter().filter(charSequence); // 어댑터 클래스의 Filter 클래스를 사용할 때 사용
             }
 
             @Override
@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        // https://jootc.com/p/201906042883
 
         homeBtn = (Button)findViewById(R.id.homeBtn);
         homeBtn.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //adapter = new RecyclerViewAdapter(this, getList());
+        //adapter = new RecyclerViewAdapter(this, getList()); // 어댑터 클래스의 Filter 클래스를 사용할 때 사용
         adapter = new RecyclerViewAdapter(cardItems, this);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
@@ -158,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
-    private ArrayList<CardItem> getList() {
+    private ArrayList<CardItem> getList() { // 어댑터 클래스의 Filter 클래스를 사용할 때 사용
         return RecyclerViewAdapter.cardItems;
     } */
 
