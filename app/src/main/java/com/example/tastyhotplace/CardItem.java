@@ -5,7 +5,7 @@ import android.net.Uri;
 
 public class CardItem {
 
-    //public Uri foodImage;
+    public int foodImage;
     public String name;
     public String location;
     public String menu;
@@ -15,6 +15,14 @@ public class CardItem {
     public String tel;
     public String review;
     public String note;
+
+    public int getFoodImage() {
+        return foodImage;
+    }
+
+    public void setFoodImage(int foodImage) {
+        this.foodImage = foodImage;
+    }
 
     public String getName() {
         return name;
@@ -88,8 +96,8 @@ public class CardItem {
         this.note = note;
     }
 
-    public CardItem(String name, String location, String menu, String side, String price, String time, String tel, String review, String note) {
-        //this.foodImage = foodImage;
+    public CardItem(int foodImage, String name, String location, String menu, String side, String price, String time, String tel, String review, String note) {
+        this.foodImage = foodImage;
         this.name = name;
         this.location = location;
         this.menu = menu;
@@ -104,7 +112,8 @@ public class CardItem {
     @Override
     public String toString() {
         return "CardItem{" +
-                "name='" + name + '\'' +
+                "foodImage=" + foodImage +
+                ", name='" + name + '\'' +
                 ", location='" + location + '\'' +
                 ", menu='" + menu + '\'' +
                 ", side='" + side + '\'' +

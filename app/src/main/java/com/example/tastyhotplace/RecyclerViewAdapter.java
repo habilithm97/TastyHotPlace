@@ -157,8 +157,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 public void onClick(View view) {
                     position = getAdapterPosition(); // 클릭한 위치를 가져옴
 
-                    BitmapDrawable drawable = (BitmapDrawable)foodImg.getDrawable();
-                    Bitmap bitmap = drawable.getBitmap();
+                    BitmapDrawable drawable = (BitmapDrawable)foodImg.getDrawable(); // 이미지를 드로어블 이미지로 가져와서
+                    Bitmap bitmap = drawable.getBitmap(); // 그 드로어블 이미지를 비트맵으로 바꿈
+
                     String itemName = nameTv.getText().toString();
                     String itemLocation = locationTv.getText().toString();
                     String itemMenu = menuTv.getText().toString();
@@ -171,7 +172,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                     Intent intent = new Intent(context, WritePlace.class);
                     // 이 부분에 이미지를 인텐트로 보내야됨
-                    //Bitmap foodImgBitmap = BitmapFactory.decodeResource(context, bitmap);
+                    // Bitmap foodImgBitmap = BitmapFactory.decodeResource(context.getResources(), bitmap);
                     intent.putExtra("itemName", itemName);
                     intent.putExtra("itemLocation", itemLocation);
                     intent.putExtra("itemMenu", itemMenu);
