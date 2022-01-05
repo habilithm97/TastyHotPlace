@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,9 +37,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     Activity activity;
 
     public RecyclerViewAdapter(ArrayList<CardItem> cardItems, Activity activity) {
-        this.activity = activity;
         this.cardItems = cardItems;
-        //this.filteredList = list;
+        this.activity = activity;
     }
     @NonNull
     @Override
@@ -157,6 +157,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 public void onClick(View view) {
                     position = getAdapterPosition(); // 클릭한 위치를 가져옴
 
+                    BitmapDrawable drawable = (BitmapDrawable)foodImg.getDrawable();
+                    Bitmap bitmap = drawable.getBitmap();
                     String itemName = nameTv.getText().toString();
                     String itemLocation = locationTv.getText().toString();
                     String itemMenu = menuTv.getText().toString();
@@ -168,7 +170,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     String itemNote = noteTv.getText().toString();
 
                     Intent intent = new Intent(context, WritePlace.class);
-                    // Bitmap sendBitmap = BitmapFactory.decodeResource(getResource(), )
+                    // 이 부분에 이미지를 인텐트로 보내야됨
+                    //Bitmap foodImgBitmap = BitmapFactory.decodeResource(context, bitmap);
                     intent.putExtra("itemName", itemName);
                     intent.putExtra("itemLocation", itemLocation);
                     intent.putExtra("itemMenu", itemMenu);

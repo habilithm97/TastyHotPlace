@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "이거 누르면 검색창에 입력한 텍스트가 널이됨", Toast.LENGTH_SHORT).show();
+                searchEdt.setText(null);
             }
         });
 
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //adapter = new RecyclerViewAdapter(this, getList()); // 어댑터 클래스의 Filter 클래스를 사용할 때 사용
-        adapter = new RecyclerViewAdapter(cardItems, this);
+        adapter = new RecyclerViewAdapter(cardItems, this); // 이 부분에서 어댑터 클래스와 연결
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
@@ -165,7 +165,11 @@ public class MainActivity extends AppCompatActivity {
         filteredList.clear();
 
         for(int i = 0; i < cardItems.size(); i++) {
-            if(cardItems.get(i).getName().toLowerCase().contains(str.toLowerCase())) {
+            if(cardItems.get(i).getName().toLowerCase().contains(str.toLowerCase()) || cardItems.get(i).getLocation().toLowerCase().contains(str.toLowerCase()) ||
+                    cardItems.get(i).getMenu().toLowerCase().contains(str.toLowerCase()) || cardItems.get(i).getSide().toLowerCase().contains(str.toLowerCase()) ||
+                    cardItems.get(i).getPrice().toLowerCase().contains(str.toLowerCase()) || cardItems.get(i).getTime().toLowerCase().contains(str.toLowerCase()) ||
+                    cardItems.get(i).getTel().toLowerCase().contains(str.toLowerCase()) || cardItems.get(i).getReview().toLowerCase().contains(str.toLowerCase()) ||
+                    cardItems.get(i).getNote().toLowerCase().contains(str.toLowerCase())) {
                 filteredList.add(cardItems.get(i));
             }
         }
