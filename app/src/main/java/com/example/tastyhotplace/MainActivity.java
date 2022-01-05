@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         foodImg = getIntent().getParcelableExtra("foodImg");
 
-        FloatingActionButton floatingActionButton = findViewById(R.id.floatBtn); // 메모 작성하는 플로팅 버튼
+        FloatingActionButton floatingActionButton = findViewById(R.id.floatBtn);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
-    private ArrayList<CardItem> getList() { // 어댑터 클래스의 Filter 클래스를 사용할 때 사용
+    private ArrayList<CardItem> getList() {
         return RecyclerViewAdapter.cardItems;
     } */
 

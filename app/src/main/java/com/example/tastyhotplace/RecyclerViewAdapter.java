@@ -43,7 +43,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @NonNull
     @Override
     public RecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        // 생성되면서 자동으로 호출됨 -> card_item.xml을 인플레이션
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         View itemView = inflater.inflate(R.layout.card_item, viewGroup, false);
 
@@ -59,10 +58,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         reviewTv = itemView.findViewById(R.id.reviewTv);
         noteTv = itemView.findViewById(R.id.noteTv);
 
-        return new ViewHolder(itemView, this); // 뷰홀더 객체를 생성하면서 뷰 객체를 전달하고 그 뷰홀더 객체를 반환
+        return new ViewHolder(itemView, this);
     }
 
-    @Override // 뷰홀더가 재사용될 때 호출됨, 뷰 객체는 기존 것을 그대로 사용하고 데이터만 바꿔줌
+    @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.ViewHolder holder, int position) {
         CardItem item = cardItems.get(position);
         holder.setItem(item);
@@ -168,7 +167,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     String itemReview = reviewTv.getText().toString();
                     String itemNote = noteTv.getText().toString();
 
-                    // https://twinw.tistory.com/31
                     Intent intent = new Intent(context, WritePlace.class);
                     // Bitmap sendBitmap = BitmapFactory.decodeResource(getResource(), )
                     intent.putExtra("itemName", itemName);
@@ -208,7 +206,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                                 }
                             });
                     builder.show();
-
                     return true;
                 }
             });
@@ -239,7 +236,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public void filterList(ArrayList<CardItem> filteredList) {
-        cardItems = filteredList; // 기존 리스트를 필터된 리스트로 변경
+        cardItems = filteredList;
         notifyDataSetChanged();
     }
 }
