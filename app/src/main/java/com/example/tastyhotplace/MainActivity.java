@@ -113,7 +113,8 @@ public class MainActivity extends AppCompatActivity {
                 String review = intent.getStringExtra("sendReview");
                 String note = intent.getStringExtra("sendNote");
 
-                adapter.addItem(new CardItem(name, location, menu, side, price, time, tel, review, note)); // 모델에는 int인데 foodImg는 Bitmap이라 오류남
+                // 임시로 막아놓음
+                //adapter.addItem(new CardItem(name, location, menu, side, price, time, tel, review, note));
                 adapter.notifyDataSetChanged();
 
                 saveData();
