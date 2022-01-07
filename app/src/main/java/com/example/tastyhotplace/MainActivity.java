@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,6 +17,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -103,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
 
         if(requestCode == 97) {
             if(intent != null) {
+                byte[] arr = getIntent().getByteArrayExtra("image");
+                Bitmap image = BitmapFactory.decodeByteArray(arr, 0, arr.length);
                 String name = intent.getStringExtra("sendName");
                 String location = intent.getStringExtra("sendLocation");
                 String menu = intent.getStringExtra("sendMenu");
@@ -113,8 +118,7 @@ public class MainActivity extends AppCompatActivity {
                 String review = intent.getStringExtra("sendReview");
                 String note = intent.getStringExtra("sendNote");
 
-                // 임시로 막아놓음
-                //adapter.addItem(new CardItem(name, location, menu, side, price, time, tel, review, note));
+                adapter.addItem(new CardItem(image, name, location, menu, side, price, time, tel, review, note));
                 adapter.notifyDataSetChanged();
 
                 saveData();

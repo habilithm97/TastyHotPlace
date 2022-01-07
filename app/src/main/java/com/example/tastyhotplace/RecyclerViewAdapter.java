@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.behavior.HideBottomViewOnScrollBehavior;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> implements OnItemClickListener {
@@ -156,6 +157,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 @Override
                 public void onClick(View view) {
                     position = getAdapterPosition(); // 클릭한 위치를 가져옴
+
                     String itemName = nameTv.getText().toString();
                     String itemLocation = locationTv.getText().toString();
                     String itemMenu = menuTv.getText().toString();
@@ -167,6 +169,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     String itemNote = noteTv.getText().toString();
 
                     Intent intent = new Intent(context, WritePlace.class);
+
+                    Bitmap itemFoodImg = BitmapFactory.decodeResource(context.getResources(), R.id.foodImg);
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    itemFoodImg.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+                    byte[] byteArray = byteArrayOutputStream.toByteArray();
+                    intent.putExtra("image", byteArray);
+
                     intent.putExtra("itemName", itemName);
                     intent.putExtra("itemLocation", itemLocation);
                     intent.putExtra("itemMenu", itemMenu);
