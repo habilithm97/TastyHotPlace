@@ -25,6 +25,8 @@ import com.google.android.material.behavior.HideBottomViewOnScrollBehavior;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
+import static com.example.tastyhotplace.R.id.foodImg;
+
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> implements OnItemClickListener {
 
     TextView nameTv, locationTv, menuTv, sideTv, priceTv, timeTv, telTv, reviewTv, noteTv;
@@ -92,48 +94,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     }
 
-    /*
-    @Override
-    public Filter getFilter() { // Filter 클래스에서 오버라이드한 메소드
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence charSequence) { // 필터 알고리즘 구현
-                String str = charSequence.toString(); // 검색창에 입력된 문자열
-                if(str.isEmpty()) { // 검색창에 입력한 문자가 없으면
-                    filteredList = cardItems; // 필터되지않은 기존의 어레이 리스트를 사용
-                } else { // 검색창에 입력한 문자가 있으면
-                    ArrayList<CardItem> filteringList = new ArrayList<CardItem>();
 
-
-                    for (CardItem item : cardItems) {
-                        if (item.getName().contains(charSequence) || item.getLocation().contains(charSequence) || item.getMenu().contains(charSequence) || item.getSide().contains(charSequence) ||
-                                item.getPrice().contains(charSequence) || item.getTime().contains(charSequence) || item.getTel().contains(charSequence) || item.getReview().contains(charSequence) ||
-                                item.getNote().contains(charSequence)) {
-                            filteringList.add(item);
-                        }
-                    }
-
-                    for(CardItem item : cardItems) { // 필터링되지않은 기존의 어레이 리스트를 하나하나 검색해서
-                        if (item.getName().toLowerCase().contains(str.toLowerCase()) || item.getLocation().toLowerCase().contains(str.toLowerCase()) || item.getMenu().toLowerCase().contains(str.toLowerCase()) ||
-                                item.getSide().toLowerCase().contains(str.toLowerCase()) || item.getPrice().toLowerCase().contains(str.toLowerCase()) || item.getTime().toLowerCase().contains(str.toLowerCase()) ||
-                                item.getTel().toLowerCase().contains(str.toLowerCase()) || item.getReview().toLowerCase().contains(str.toLowerCase()) || item.getNote().toLowerCase().contains(str.toLowerCase())) {
-                            filteringList.add(item); // 일치하는 케이스에 대해서 필터링 중인 리스트에 추가
-                        }
-                    }
-                    filteredList = filteringList; // 필터링 중인 리스트를 필터링된 리스트로 사용
-                }
-                FilterResults filterResults = new FilterResults();
-                filterResults.values = filteredList;
-                return filterResults;
-            }
-
-            @Override
-            protected void publishResults(CharSequence charSequence, FilterResults filterResults) { // 리사이클러뷰 업데이트
-                filteredList = (ArrayList<CardItem>)filterResults.values; // FilterResults의 values 값으로 필터링된 리스트를 넘겨줌
-                notifyDataSetChanged();
-            }
-        };
-    } */
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener {
 
@@ -170,9 +131,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                     Intent intent = new Intent(context, WritePlace.class);
 
-                    Bitmap itemFoodImg = BitmapFactory.decodeResource(context.getResources(), R.id.foodImg);
+                    Bitmap itemImg = BitmapFactory.decodeResource(context.getResources(), R.id.foodImg);
                     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                    itemFoodImg.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+                    itemImg.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
                     byte[] byteArray = byteArrayOutputStream.toByteArray();
                     intent.putExtra("image", byteArray);
 
@@ -247,3 +208,46 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         notifyDataSetChanged();
     }
 }
+
+/*
+    @Override
+    public Filter getFilter() { // Filter 클래스에서 오버라이드한 메소드
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) { // 필터 알고리즘 구현
+                String str = charSequence.toString(); // 검색창에 입력된 문자열
+                if(str.isEmpty()) { // 검색창에 입력한 문자가 없으면
+                    filteredList = cardItems; // 필터되지않은 기존의 어레이 리스트를 사용
+                } else { // 검색창에 입력한 문자가 있으면
+                    ArrayList<CardItem> filteringList = new ArrayList<CardItem>();
+
+
+                    for (CardItem item : cardItems) {
+                        if (item.getName().contains(charSequence) || item.getLocation().contains(charSequence) || item.getMenu().contains(charSequence) || item.getSide().contains(charSequence) ||
+                                item.getPrice().contains(charSequence) || item.getTime().contains(charSequence) || item.getTel().contains(charSequence) || item.getReview().contains(charSequence) ||
+                                item.getNote().contains(charSequence)) {
+                            filteringList.add(item);
+                        }
+                    }
+
+                    for(CardItem item : cardItems) { // 필터링되지않은 기존의 어레이 리스트를 하나하나 검색해서
+                        if (item.getName().toLowerCase().contains(str.toLowerCase()) || item.getLocation().toLowerCase().contains(str.toLowerCase()) || item.getMenu().toLowerCase().contains(str.toLowerCase()) ||
+                                item.getSide().toLowerCase().contains(str.toLowerCase()) || item.getPrice().toLowerCase().contains(str.toLowerCase()) || item.getTime().toLowerCase().contains(str.toLowerCase()) ||
+                                item.getTel().toLowerCase().contains(str.toLowerCase()) || item.getReview().toLowerCase().contains(str.toLowerCase()) || item.getNote().toLowerCase().contains(str.toLowerCase())) {
+                            filteringList.add(item); // 일치하는 케이스에 대해서 필터링 중인 리스트에 추가
+                        }
+                    }
+                    filteredList = filteringList; // 필터링 중인 리스트를 필터링된 리스트로 사용
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filteredList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) { // 리사이클러뷰 업데이트
+                filteredList = (ArrayList<CardItem>)filterResults.values; // FilterResults의 values 값으로 필터링된 리스트를 넘겨줌
+                notifyDataSetChanged();
+            }
+        };
+    } */

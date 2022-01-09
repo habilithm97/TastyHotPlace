@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<CardItem> cardItems, filteredList;
     //ArrayList<CardItem> filteredList;
     RecyclerViewAdapter adapter;
-    Uri foodImg;
+    //Uri foodImg;
 
     EditText searchEdt;
     public static Button homeBtn;
@@ -75,9 +75,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        loadData();
+        //loadData();
 
-        foodImg = getIntent().getParcelableExtra("foodImg");
+       //foodImg = getIntent().getParcelableExtra("foodImg");
 
         FloatingActionButton floatingActionButton = findViewById(R.id.floatBtn);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
             if(intent != null) {
                 byte[] arr = getIntent().getByteArrayExtra("image");
                 Bitmap image = BitmapFactory.decodeByteArray(arr, 0, arr.length);
+
                 String name = intent.getStringExtra("sendName");
                 String location = intent.getStringExtra("sendLocation");
                 String menu = intent.getStringExtra("sendMenu");
@@ -121,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 adapter.addItem(new CardItem(image, name, location, menu, side, price, time, tel, review, note));
                 adapter.notifyDataSetChanged();
 
-                saveData();
+                //saveData();
             }
         }
     }
@@ -146,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-        saveData();
+        //saveData();
     }
 
     public void loadData() {
