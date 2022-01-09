@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     EditText searchEdt;
     public static Button homeBtn;
 
+    Bitmap image;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == 97) {
             if(intent != null) {
                 byte[] arr = getIntent().getByteArrayExtra("image");
-                Bitmap image = BitmapFactory.decodeByteArray(arr, 0, arr.length);
+                image = BitmapFactory.decodeByteArray(arr, 0, arr.length);
 
                 String name = intent.getStringExtra("sendName");
                 String location = intent.getStringExtra("sendLocation");
@@ -127,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void saveData() {
+    public void saveData() { // 임시로 주석처리
         SharedPreferences sharedPreferences = getSharedPreferences("TastyHotPlace", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
