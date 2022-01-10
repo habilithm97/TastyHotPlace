@@ -5,7 +5,7 @@ import android.net.Uri;
 
 public class CardItem {
 
-    //public Bitmap foodImage;
+    public Bitmap foodImage;
     public String name;
     public String location;
     public String menu;
@@ -16,14 +16,13 @@ public class CardItem {
     public String review;
     public String note;
 
-    /*
     public Bitmap getFoodImage() {
         return foodImage;
     }
 
     public void setFoodImage(Bitmap foodImage) {
         this.foodImage = foodImage;
-    } */
+    }
 
     public String getName() {
         return name;
@@ -97,8 +96,8 @@ public class CardItem {
         this.note = note;
     }
 
-    public CardItem(String name, String location, String menu, String side, String price, String time, String tel, String review, String note) {
-        //this.foodImage = foodImage;
+    public CardItem(Bitmap  foodImage, String name, String location, String menu, String side, String price, String time, String tel, String review, String note) {
+        this.foodImage = foodImage;
         this.name = name;
         this.location = location;
         this.menu = menu;
@@ -113,7 +112,7 @@ public class CardItem {
     @Override
     public String toString() {
         return "CardItem{" +
-                //"foodImage=" + foodImage +
+                "foodImage=" + foodImage +
                 ", name='" + name + '\'' +
                 ", location='" + location + '\'' +
                 ", menu='" + menu + '\'' +

@@ -111,6 +111,8 @@ public class MainActivity extends AppCompatActivity {
                 /*
                 byte[] arr = getIntent().getByteArrayExtra("image");
                 image = BitmapFactory.decodeByteArray(arr, 0, arr.length); */
+                byte[] byteArray = getIntent().getByteArrayExtra("itemImg");
+                Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
 
                 String name = intent.getStringExtra("sendName");
                 String location = intent.getStringExtra("sendLocation");
@@ -122,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                 String review = intent.getStringExtra("sendReview");
                 String note = intent.getStringExtra("sendNote");
 
-                adapter.addItem(new CardItem(name, location, menu, side, price, time, tel, review, note));
+                adapter.addItem(new CardItem(bitmap, name, location, menu, side, price, time, tel, review, note));
                 adapter.notifyDataSetChanged();
 
                 saveData();

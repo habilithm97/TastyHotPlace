@@ -20,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.nio.channels.InterruptedByTimeoutException;
 
 public class WritePlace extends AppCompatActivity {
@@ -38,6 +39,7 @@ public class WritePlace extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_place);
+
 
         nameEdt = (EditText)findViewById(R.id.nameEdt);
         locationEdt = (EditText)findViewById(R.id.locationEdt);
@@ -88,6 +90,15 @@ public class WritePlace extends AppCompatActivity {
     }
 
     public void SendData() {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        Bitmap bitmap = ((BitmapDrawable)foodImgInput.getDrawable()).getBitmap(); // VectorDrawble을 BitmapDrawble로 캐스팅 할 수 없음
+        float scale = (float)(1024/(float)bitmap.getWidth());
+        int img_w = (int)(bitmap.getWidth() * scale);
+        int img_h = (int)(bitmap.getHeight() * scale);
+        Bitmap resize = Bitmap.createScaledBitmap(bitmap, img_w, img_h, true);
+        resize.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+
         String sendName = nameEdt.getText().toString();
         String sendLocation = locationEdt.getText().toString();
         String sendMenu = menuEdt.getText().toString();
@@ -99,7 +110,7 @@ public class WritePlace extends AppCompatActivity {
         String sendNote = noteEdt.getText().toString();
 
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("foodImg", selectionImageUri);
+        intent.putExtra("itemImg", byteArray);
         intent.putExtra("sendName", sendName);
         intent.putExtra("sendLocation", sendLocation);
         intent.putExtra("sendMenu", sendMenu);
@@ -142,9 +153,6 @@ public class WritePlace extends AppCompatActivity {
             telEdt.setText(itemTel);
             reviewEdt.setText(itemReview);
             noteEdt.setText(itemNote);
-
-            //saveBtn.setVisibility(View.INVISIBLE);
-            //updateBtn.setVisibility(View.VISIBLE);
         }
     }
 }
