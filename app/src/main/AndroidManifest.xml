@@ -4,13 +4,13 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:hardwareAccelerated="false"
         android:theme="@style/Theme.TastyHotPlace">
-
+        <activity android:name=".UpdateActivity"></activity>
         <activity android:name=".WritePlace" />
         <activity android:name=".MainActivity">
             <intent-filter>

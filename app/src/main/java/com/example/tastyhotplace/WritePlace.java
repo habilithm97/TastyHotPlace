@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -91,7 +93,9 @@ public class WritePlace extends AppCompatActivity {
 
     public void SendData() {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        Bitmap bitmap = ((BitmapDrawable)foodImgInput.getDrawable()).getBitmap(); // VectorDrawble을 BitmapDrawble로 캐스팅 할 수 없음
+        Bitmap bitmap = ((BitmapDrawable)foodImgInput.getDrawable()).getBitmap(); // VectorDrawble을 BitmapDrawble로 캐스팅 할 수 없음(둘 다 Drawble 클래스의 서브 클래스
+        // -> 드로어블에서 비트맵을 가져오려면 드로어블 메타 데이터에서 비트맵을 만들어야함
+
         float scale = (float)(1024/(float)bitmap.getWidth());
         int img_w = (int)(bitmap.getWidth() * scale);
         int img_h = (int)(bitmap.getHeight() * scale);
