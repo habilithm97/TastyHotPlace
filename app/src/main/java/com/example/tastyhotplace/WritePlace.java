@@ -35,13 +35,10 @@ public class WritePlace extends AppCompatActivity {
 
     Uri selectionImageUri;
 
-    Button updateBtn, saveBtn;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_place);
-
 
         nameEdt = (EditText)findViewById(R.id.nameEdt);
         locationEdt = (EditText)findViewById(R.id.locationEdt);
@@ -53,7 +50,7 @@ public class WritePlace extends AppCompatActivity {
         reviewEdt = (EditText)findViewById(R.id.reviewEdt);
         noteEdt = (EditText)findViewById(R.id.noteEdt);
 
-        saveBtn = (Button)findViewById(R.id.saveBtn);
+        Button saveBtn = (Button)findViewById(R.id.saveBtn);
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,8 +62,6 @@ public class WritePlace extends AppCompatActivity {
             }
         });
 
-        updateBtn = (Button)findViewById(R.id.updateBtn);
-
         foodImgInput = (ImageView)findViewById(R.id.foodImgInput);
         foodImgInput.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,8 +71,6 @@ public class WritePlace extends AppCompatActivity {
                 startActivityForResult(intent, GET_GALLERY_IMAGE);
             }
         });
-
-        cardItemClick();
     }
 
     @Override
@@ -128,36 +121,6 @@ public class WritePlace extends AppCompatActivity {
         finish();
 
         Toast.makeText(getApplicationContext(), "저장되었습니다. ", Toast.LENGTH_SHORT).show();
-    }
-
-    public void cardItemClick() {
-        Intent intent = getIntent(); // 아이템뷰의 인텐트를 받아와서 값들을 꺼냄
-        if(!TextUtils.isEmpty(intent.getStringExtra("itemName"))) { // 넘어온 인텐트에 상호명이 있다면 or 상호명이 없다면 그대로(아이템을 안누른거지)
-
-            byte[] byteArray = getIntent().getByteArrayExtra("itemImg");
-            Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-
-            String itemName = intent.getStringExtra("itemName");
-            String itemLocation = intent.getStringExtra("itemLocation");
-            String itemMenu = intent.getStringExtra("itemMenu");
-            String itemSide = intent.getStringExtra("itemSide");
-            String itemPrice = intent.getStringExtra("itemPrice");
-            String itemTime = intent.getStringExtra("itemTime");
-            String itemTel = intent.getStringExtra("itemTel");
-            String itemReview = intent.getStringExtra("itemReview");
-            String itemNote = intent.getStringExtra("itemNote");
-
-            foodImgInput.setImageBitmap(bitmap);
-            nameEdt.setText(itemName);
-            locationEdt.setText(itemLocation);
-            menuEdt.setText(itemMenu);
-            sideEdt.setText(itemSide);
-            priceEdt.setText(itemPrice);
-            timeEdt.setText(itemTime);
-            telEdt.setText(itemTel);
-            reviewEdt.setText(itemReview);
-            noteEdt.setText(itemNote);
-        }
     }
 }
 

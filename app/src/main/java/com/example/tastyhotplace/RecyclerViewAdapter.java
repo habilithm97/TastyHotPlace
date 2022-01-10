@@ -129,7 +129,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     String itemReview = reviewTv.getText().toString();
                     String itemNote = noteTv.getText().toString();
 
-                    Intent intent = new Intent(context, WritePlace.class);
+                    Intent intent = new Intent(context, UpdateActivity.class);
 
                     /*
                     // putExtra로 넘길 수 있는 데이터의 크기는 100KB라서 그 크기 이상의 사진 파일을 보내면 앱이 죽는 현상 발생.
