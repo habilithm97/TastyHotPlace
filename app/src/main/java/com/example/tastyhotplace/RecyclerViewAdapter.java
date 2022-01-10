@@ -140,6 +140,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     byte[] byteArray = stream.toByteArray();
                     intent.putExtra("image", byteArray); */
 
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    Bitmap bitmap = ((BitmapDrawable)foodImg.getDrawable()).getBitmap();
+                    float scale = (float)(1024/(float)bitmap.getWidth());
+                    int img_w = (int)(bitmap.getWidth() * scale);
+                    int img_h = (int)(bitmap.getHeight() * scale);
+                    Bitmap resize = Bitmap.createScaledBitmap(bitmap, img_w, img_h, true);
+                    resize.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                    byte[] byteArray = stream.toByteArray();
+
+                    intent.putExtra("itemImg", byteArray);
                     intent.putExtra("itemName", itemName);
                     intent.putExtra("itemLocation", itemLocation);
                     intent.putExtra("itemMenu", itemMenu);

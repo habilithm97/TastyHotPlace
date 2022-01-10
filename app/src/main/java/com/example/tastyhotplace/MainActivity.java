@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<CardItem> cardItems, filteredList;
     //ArrayList<CardItem> filteredList;
     RecyclerViewAdapter adapter;
-    //Uri foodImg;
+    ImageView foodImg;
 
     EditText searchEdt;
     public static Button homeBtn;
@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        foodImg = (ImageView)findViewById(R.id.foodImg);
 
         cardItems = new ArrayList<>();
         filteredList = new ArrayList<>();
@@ -78,8 +80,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         loadData();
-
-       //foodImg = getIntent().getParcelableExtra("foodImg");
 
         FloatingActionButton floatingActionButton = findViewById(R.id.floatBtn);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
