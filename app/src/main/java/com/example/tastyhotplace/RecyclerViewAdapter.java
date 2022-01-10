@@ -131,13 +131,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                     Intent intent = new Intent(context, WritePlace.class);
 
+                    /*
                     // putExtra로 넘길 수 있는 데이터의 크기는 100KB라서 그 크기 이상의 사진 파일을 보내면 앱이 죽는 현상 발생.
                     // 해결법 : 사진 파일을 Byte Array로 변경하여 보낸 후 받는 쪽에서 다시 사진 파일로 변경한다.
                     Bitmap itemImg = BitmapFactory.decodeResource(context.getResources(), R.id.foodImg); // 리소스 폴더의 fooImg 파일을 그대로 사용하면 안됨
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     itemImg.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                     byte[] byteArray = stream.toByteArray();
-                    intent.putExtra("image", byteArray);
+                    intent.putExtra("image", byteArray); */
 
                     intent.putExtra("itemName", itemName);
                     intent.putExtra("itemLocation", itemLocation);

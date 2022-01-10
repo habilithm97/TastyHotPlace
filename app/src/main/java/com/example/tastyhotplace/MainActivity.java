@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //loadData();
+        loadData();
 
        //foodImg = getIntent().getParcelableExtra("foodImg");
 
@@ -108,8 +108,9 @@ public class MainActivity extends AppCompatActivity {
 
         if(requestCode == 97) {
             if(intent != null) {
+                /*
                 byte[] arr = getIntent().getByteArrayExtra("image");
-                image = BitmapFactory.decodeByteArray(arr, 0, arr.length);
+                image = BitmapFactory.decodeByteArray(arr, 0, arr.length); */
 
                 String name = intent.getStringExtra("sendName");
                 String location = intent.getStringExtra("sendLocation");
@@ -121,10 +122,10 @@ public class MainActivity extends AppCompatActivity {
                 String review = intent.getStringExtra("sendReview");
                 String note = intent.getStringExtra("sendNote");
 
-                adapter.addItem(new CardItem(image, name, location, menu, side, price, time, tel, review, note));
+                adapter.addItem(new CardItem(name, location, menu, side, price, time, tel, review, note));
                 adapter.notifyDataSetChanged();
 
-                //saveData();
+                saveData();
             }
         }
     }
@@ -149,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-        //saveData();
+        saveData();
     }
 
     public void loadData() {
