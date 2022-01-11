@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
 
-        if(requestCode == 97) {
+        if(requestCode == 97) { // 수정한 값들을 받음
             if(intent != null) {
                 /*
                 byte[] arr = getIntent().getByteArrayExtra("image");
