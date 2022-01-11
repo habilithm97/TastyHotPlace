@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -82,6 +83,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public void addItem(CardItem item) {
         cardItems.add(item);
+    }
+
+    public void updateItem(int position, CardItem item) {
+        cardItems.set(position, item);
+        notifyItemRemoved(position);
     }
 
     @Override
@@ -161,7 +167,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     intent.putExtra("itemReview", itemReview);
                     intent.putExtra("itemNote", itemNote);
 
-                    ((Activity)context).startActivityForResult(intent, 97);
+                    ((Activity)context).startActivityForResult(intent, 98);
                 }
             });
 

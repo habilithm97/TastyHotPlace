@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
 
-        if(requestCode == 97) { // 수정한 값들을 받음
+        if(requestCode == 97) { // 새로운 값들을 WritePlace에서 받아옴
             if(intent != null) {
                 /*
                 byte[] arr = getIntent().getByteArrayExtra("image");
@@ -129,6 +129,20 @@ public class MainActivity extends AppCompatActivity {
 
                 saveData();
             }
+        } else if(requestCode == 98) { // 수정할 시에 어댑터에서 받아옴
+            byte[] byteArray = getIntent().getByteArrayExtra("itemImg");
+            Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+            String name = intent.getStringExtra("itemName");
+            String location = intent.getStringExtra("itemLocation");
+            String menu = intent.getStringExtra("itemMenu");
+            String side = intent.getStringExtra("itemSide");
+            String price = intent.getStringExtra("itemPrice");
+            String time = intent.getStringExtra("itemTime");
+            String tel = intent.getStringExtra("itemTel");
+            String review = intent.getStringExtra("itemReview");
+            String note = intent.getStringExtra("itemNote");
+
+            adapter.updateItem(RecyclerViewAdapter.position, new CardItem(bitmap, name, location, menu, side, price, time, tel, review, note));
         }
     }
 
