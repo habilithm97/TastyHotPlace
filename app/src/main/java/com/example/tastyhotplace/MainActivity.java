@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         } else if(requestCode == 98) { // 수정할 시에 어댑터에서 받아옴
             byte[] byteArray = getIntent().getByteArrayExtra("itemImg");
 
-            Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length); // 이 부분에서 오류뜸
+            Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length); // 이 부분에서 오류뜸 -> 배열 데이터가 없다 -> 배열 데이터가 null일 경우에 대한 처리 추가 요망
 
             String name = intent.getStringExtra("itemName");
             String location = intent.getStringExtra("itemLocation");
