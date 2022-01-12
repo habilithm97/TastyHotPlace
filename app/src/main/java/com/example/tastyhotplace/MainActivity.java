@@ -131,7 +131,9 @@ public class MainActivity extends AppCompatActivity {
             }
         } else if(requestCode == 98) { // 수정할 시에 어댑터에서 받아옴
             byte[] byteArray = getIntent().getByteArrayExtra("itemImg");
-            Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+
+            Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length); // 이 부분에서 오류뜸
+
             String name = intent.getStringExtra("itemName");
             String location = intent.getStringExtra("itemLocation");
             String menu = intent.getStringExtra("itemMenu");
