@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        loadData();
+        //loadData();
 
         FloatingActionButton floatingActionButton = findViewById(R.id.floatBtn);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 adapter.addItem(new CardItem(bitmap, name, location, menu, side, price, time, tel, review, note));
                 adapter.notifyDataSetChanged();
 
-                saveData();
+                //saveData();
             }
         } else if(requestCode == 98) { // 수정할 시에 어댑터에서 받아옴
             byte[] byteArray = getIntent().getByteArrayExtra("itemImg");
@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-        saveData();
+        //saveData();
     }
 
     public void loadData() {
