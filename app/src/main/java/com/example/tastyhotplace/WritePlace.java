@@ -85,6 +85,8 @@ public class WritePlace extends AppCompatActivity {
     }
 
     public void SendData() {
+
+        /*
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         Bitmap bitmap = ((BitmapDrawable)foodImgInput.getDrawable()).getBitmap(); // VectorDrawble을 BitmapDrawble로 캐스팅 할 수 없음(둘 다 Drawble 클래스의 서브 클래스)
         // -> 드로어블에서 비트맵을 가져오려면 드로어블 메타 데이터에서 비트맵을 만들어야함
@@ -92,9 +94,9 @@ public class WritePlace extends AppCompatActivity {
         float scale = (float)(1024/(float)bitmap.getWidth());
         int img_w = (int)(bitmap.getWidth() * scale);
         int img_h = (int)(bitmap.getHeight() * scale);
-        Bitmap resize = Bitmap.createScaledBitmap(bitmap, img_w, img_h, true);
-        resize.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-        byte[] byteArray = stream.toByteArray();
+        Bitmap resize = Bitmap.createScaledBitmap(bitmap, img_w, img_h, true); // createScaleBitmap() : 사이즈가 큰 비트맵을 원하는 사이즈에 맞게 리사이징
+        resize.compress(Bitmap.CompressFormat.JPEG, 100, stream); // compress() : 이미지의 사이즈는 그대로 두고 퀄리티를 조절
+        byte[] byteArray = stream.toByteArray(); */
 
         String sendName = nameEdt.getText().toString();
         String sendLocation = locationEdt.getText().toString();
@@ -107,7 +109,7 @@ public class WritePlace extends AppCompatActivity {
         String sendNote = noteEdt.getText().toString();
 
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("itemImg", byteArray);
+        //intent.putExtra("itemImg", byteArray);
         intent.putExtra("sendName", sendName);
         intent.putExtra("sendLocation", sendLocation);
         intent.putExtra("sendMenu", sendMenu);

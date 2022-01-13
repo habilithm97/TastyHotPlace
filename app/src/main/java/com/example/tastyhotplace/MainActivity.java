@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //loadData();
+        loadData();
 
         FloatingActionButton floatingActionButton = findViewById(R.id.floatBtn);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -110,9 +110,9 @@ public class MainActivity extends AppCompatActivity {
             if(intent != null) {
                 /*
                 byte[] arr = getIntent().getByteArrayExtra("image");
-                image = BitmapFactory.decodeByteArray(arr, 0, arr.length); */
+                image = BitmapFactory.decodeByteArray(arr, 0, arr.length);
                 byte[] byteArray = getIntent().getByteArrayExtra("itemImg");
-                Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+                Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length); */
 
                 String name = intent.getStringExtra("sendName");
                 String location = intent.getStringExtra("sendLocation");
@@ -124,15 +124,15 @@ public class MainActivity extends AppCompatActivity {
                 String review = intent.getStringExtra("sendReview");
                 String note = intent.getStringExtra("sendNote");
 
-                adapter.addItem(new CardItem(bitmap, name, location, menu, side, price, time, tel, review, note));
+                adapter.addItem(new CardItem(name, location, menu, side, price, time, tel, review, note));
                 adapter.notifyDataSetChanged();
 
-                //saveData();
+                saveData();
             }
         } else if(requestCode == 98) { // 수정할 시에 어댑터에서 받아옴
+            /*
             byte[] byteArray = getIntent().getByteArrayExtra("itemImg");
-
-            Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length); // 이 부분에서 오류뜸 -> 배열 데이터가 없다 -> 배열 데이터가 null일 경우에 대한 처리 추가 요망
+            Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length); // 이 부분에서 오류뜸 -> 배열 데이터가 없다 -> 배열 데이터가 null일 경우에 대한 처리 추가 요망 */
 
             String name = intent.getStringExtra("itemName");
             String location = intent.getStringExtra("itemLocation");
@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
             String review = intent.getStringExtra("itemReview");
             String note = intent.getStringExtra("itemNote");
 
-            adapter.updateItem(RecyclerViewAdapter.position, new CardItem(bitmap, name, location, menu, side, price, time, tel, review, note));
+            adapter.updateItem(RecyclerViewAdapter.position, new CardItem(name, location, menu, side, price, time, tel, review, note));
         }
     }
 
@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-        //saveData();
+        saveData();
     }
 
     public void loadData() {
